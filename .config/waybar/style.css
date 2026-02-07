@@ -1,0 +1,130 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #000000; /* Pure OLED Black */
+    color: #ffffff;
+    border-bottom: 1px solid #333333;
+}
+
+/* --- Module Spacing --- */
+#custom-rofi,
+#workspaces,
+#idle_inhibitor,
+#cpu,
+#temperature,
+#memory,
+#disk {
+    margin-right: 15px;
+    padding: 0 5px;
+}
+
+#custom-vpn,
+#network,
+#bluetooth,
+#pulseaudio,
+#backlight,
+#power-profiles-daemon,
+#battery,
+#tray,
+#custom-power {
+    margin-left: 10px;
+    padding: 0 5px;
+}
+
+/* --- Workspaces --- */
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #666666;
+    transition: all 0.3s ease;
+}
+
+#workspaces button:hover {
+    color: #ffffff;
+    background-color: #1a1a1a;
+}
+
+#workspaces button.active {
+    background-color: transparent;
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+#workspaces button.urgent {
+    color: #ff0055;
+}
+
+/* --- Specific Module Colors --- */
+
+#custom-rofi {
+    color: #00ccff; /* Neon Cyan */
+    font-size: 18px;
+    margin-right: 20px;
+    padding-left: 10px;
+}
+
+#clock {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#cpu { color: #ff0055; }
+#temperature { color: #ffcc00; }
+#memory { color: #00ff99; }
+#disk { color: #be00ff; }
+
+/* --- Power Profiles --- */
+#power-profiles-daemon {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#power-profiles-daemon.performance { color: #ff0055; }
+#power-profiles-daemon.balanced { color: #00ccff; }
+#power-profiles-daemon.power-saver { color: #00ff99; }
+
+/* --- Battery --- */
+#battery { font-weight: bold; }
+#battery.charging, #battery.plugged { color: #00ff99; }
+#battery.critical:not(.charging) {
+    background-color: #ff0055;
+    color: #000000;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to { background-color: #000000; color: #ff0055; }
+}
+
+/* --- Right Modules --- */
+#network { color: #00ccff; }
+#bluetooth { color: #00ccff; }
+
+#pulseaudio { color: #ffffff; }
+#pulseaudio.muted { color: #666666; }
+
+/* --- Power Button (Vital for Logout) --- */
+#custom-power {
+    margin-right: 15px;
+    color: #ff0055;
+    padding-right: 10px;
+    padding-left: 10px;
+    transition: all 0.3s ease;
+}
+
+#custom-power:hover {
+    background-color: #ff0055;
+    color: #000000;
+}
+
+#tray > .passive { -gtk-icon-effect: dim; }
+#tray > .needs-attention { -gtk-icon-effect: highlight; background-color: #ff0055; }

@@ -1,0 +1,18 @@
+# Global settings
+max-history=5
+sort=-time
+
+# Appearance
+font=sans-serif 10
+background-color=#1e1e2e
+text-color=#cdd6f4
+border-color=#89b4fa
+border-size=2
+border-radius=8
+
+# Behavior
+# This sets the timeout to 5 seconds (5000 milliseconds)
+default-timeout=5000
+
+# Dismiss on click
+on-button-left=dismiss
