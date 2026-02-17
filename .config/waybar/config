@@ -24,7 +24,7 @@
     "bluetooth",
     "pulseaudio",
     "backlight",
-    "power-profiles-daemon",
+    "custom/power_profile",
     "battery",
     "tray",
     "custom/power"
@@ -59,16 +59,12 @@
     "tooltip-format-activated": "Presentation Mode (Idle Off)",
     "tooltip-format-deactivated": "Power Saving Mode (Idle On)"
   },
-  "power-profiles-daemon": {
-    "format": "{icon}",
-    "tooltip-format": "Power Profile: {profile}\nDriver: {driver}",
-    "tooltip": true,
-    "format-icons": {
-      "default": "",
-      "performance": "",
-      "balanced": " ",
-      "power-saver": " "
-    }
+  "custom/power_profile": {
+    "exec": "auto-cpufreq --stats | grep 'Energy Performance Preference' | awk '{print $4}'",
+    "interval": 10,
+    "format": " {}",
+    "on-click": "auto-cpufreq --force=reset",
+    "tooltip": false
   },
   "cpu": {
     "interval": 5,
