@@ -1,130 +1,148 @@
+/* Catppuccin Mocha Palette */
+@define-color base   #1e1e2e;
+@define-color mantle #181825;
+@define-color crust  #11111b;
+@define-color text   #cdd6f4;
+@define-color subtext0 #a6adc8;
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color surface2 #585b70;
+@define-color overlay0 #6c7086;
+
+@define-color blue      #89b4fa;
+@define-color lavender  #b4befe;
+@define-color sapphire  #74c7ec;
+@define-color sky       #89dceb;
+@define-color teal      #94e2d5;
+@define-color green     #a6e3a1;
+@define-color yellow    #f9e2af;
+@define-color peach     #fab387;
+@define-color maroon    #eba0ac;
+@define-color red       #f38ba8;
+@define-color mauve     #cba6f7;
+@define-color pink      #f5c2e7;
+@define-color flamingo  #f2cdcd;
+@define-color rosewater #f5e0dc;
+
 * {
     border: none;
-    border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
+    border-radius: 8px; /* Rounded pill look */
+    font-family: "JetBrainsMono Nerd Font", "Roboto", "Helvetica", "Arial", sans-serif;
     font-size: 14px;
     min-height: 0;
 }
 
 window#waybar {
-    background-color: #000000; /* Pure OLED Black */
-    color: #ffffff;
-    border-bottom: 1px solid #333333;
+    background-color: rgba(30, 30, 46, 0.9); /* Base with slight transparency */
+    color: @text;
+    border-bottom: 2px solid @surface0;
+    transition-property: background-color;
+    transition-duration: .5s;
 }
 
-/* --- Module Spacing --- */
+/* Common styling for module "pills" */
 #custom-rofi,
 #workspaces,
 #idle_inhibitor,
 #cpu,
 #temperature,
 #memory,
-#disk {
-    margin-right: 15px;
-    padding: 0 5px;
-}
-
-#custom-vpn,
+#disk,
+#custom-music,
+#clock,
 #network,
 #bluetooth,
 #pulseaudio,
 #backlight,
-#power-profiles-daemon,
 #battery,
 #tray,
 #custom-power {
-    margin-left: 10px;
-    padding: 0 5px;
+    background-color: @surface0;
+    padding: 0 10px;
+    margin: 4px 4px;
 }
 
-/* --- Workspaces --- */
+/* --- Modules Left --- */
+#custom-rofi {
+    color: @mauve;
+    background-color: @mantle;
+    font-size: 18px;
+}
+
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 8px;
+    color: @overlay0;
     background-color: transparent;
-    color: #666666;
-    transition: all 0.3s ease;
-}
-
-#workspaces button:hover {
-    color: #ffffff;
-    background-color: #1a1a1a;
 }
 
 #workspaces button.active {
-    background-color: transparent;
-    color: #ffffff;
-    border-bottom: 2px solid #ffffff;
+    color: @mauve;
+    background-color: @surface1;
 }
 
 #workspaces button.urgent {
-    color: #ff0055;
+    color: @crust;
+    background-color: @red;
+    animation: workspace-flash 0.5s linear infinite alternate;
 }
 
-/* --- Specific Module Colors --- */
+@keyframes workspace-flash {
+    to { background-color: @surface0; color: @red; }
+}
 
-#custom-rofi {
-    color: #00ccff; /* Neon Cyan */
-    font-size: 18px;
-    margin-right: 20px;
-    padding-left: 10px;
+/* --- Modules Center --- */
+#custom-music {
+    color: @green;
+    background-color: @mantle;
+    min-width: 220px;
+    font-weight: bold;
 }
 
 #clock {
+    color: @blue;
+    background-color: @mantle;
     font-weight: bold;
-    color: #ffffff;
 }
 
-#cpu { color: #ff0055; }
-#temperature { color: #ffcc00; }
-#memory { color: #00ff99; }
-#disk { color: #be00ff; }
+/* --- Modules Right (Hardware) --- */
+#cpu { color: @red; }
+#temperature { color: @peach; }
+#memory { color: @yellow; }
+#disk { color: @maroon; }
 
-/* --- Power Profiles --- */
-#power-profiles-daemon {
-    padding-left: 5px;
-    padding-right: 5px;
-}
-#power-profiles-daemon.performance { color: #ff0055; }
-#power-profiles-daemon.balanced { color: #00ccff; }
-#power-profiles-daemon.power-saver { color: #00ff99; }
+#network { color: @teal; }
+#bluetooth { color: @blue; }
+#pulseaudio { color: @sky; }
+#backlight { color: @yellow; }
 
-/* --- Battery --- */
-#battery { font-weight: bold; }
-#battery.charging, #battery.plugged { color: #00ff99; }
+#battery { color: @green; }
+#battery.charging, #battery.plugged { color: @green; }
 #battery.critical:not(.charging) {
-    background-color: #ff0055;
-    color: #000000;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    background-color: @red;
+    color: @crust;
+    animation: blink 0.5s linear infinite alternate;
 }
 
-@keyframes blink {
-    to { background-color: #000000; color: #ff0055; }
-}
+@keyframes blink { to { background-color: @surface0; color: @red; } }
 
-/* --- Right Modules --- */
-#network { color: #00ccff; }
-#bluetooth { color: #00ccff; }
+#tray { background-color: @mantle; }
 
-#pulseaudio { color: #ffffff; }
-#pulseaudio.muted { color: #666666; }
-
-/* --- Power Button (Vital for Logout) --- */
 #custom-power {
-    margin-right: 15px;
-    color: #ff0055;
-    padding-right: 10px;
-    padding-left: 10px;
-    transition: all 0.3s ease;
+    color: @red;
+    background-color: @mantle;
+    margin-right: 8px;
 }
 
 #custom-power:hover {
-    background-color: #ff0055;
-    color: #000000;
+    background-color: @red;
+    color: @crust;
 }
 
-#tray > .passive { -gtk-icon-effect: dim; }
-#tray > .needs-attention { -gtk-icon-effect: highlight; background-color: #ff0055; }
+tooltip {
+  background: @base;
+  border: 1px solid @surface0;
+}
+
+tooltip label {
+  color: @text;
+}
